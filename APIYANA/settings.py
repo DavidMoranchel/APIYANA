@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #My apps
+    'users',
+    #Django Rest-framework
+    'rest_framework',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -49,6 +54,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'APIYANA.urls'
 
@@ -70,6 +77,23 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'APIYANA.wsgi.application'
+
+#Rest framework api
+REST_FRAMEWORK = {
+   'DEFAULT_AUTHENTICATION_CLASSES': (
+       'rest_framework.authentication.BasicAuthentication',
+       'rest_framework.authentication.SessionAuthentication',
+       # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+   ),
+   # 'DEFAULT_PERMISSION_CLASSES': (
+   #     'rest_framework.permissions.IsAuthenticated',
+   #     'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+   # ),
+   'DEFAULT_FILTER_BACKENDS': (
+       'rest_framework.filters.DjangoFilterBackend',
+   ),
+   'SEARCH_PARAM': 'q',
+}
 
 
 # Database
